@@ -1,12 +1,125 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Personaje </title>
 </head>
+
 <body>
-    <h1>prueba</h1>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/94/three.min.js"
+        integrity="sha512-ZGgXd6TB5qjtvTU6Q5o/LJM4pwLNy8U8XXJh+vJZDXp2wC8ASrl4WOeivaq2fpYc3TnTCLzyDvVjY8YhvNYaXg=="
+        crossorigin="anonymous">
+        </script>
+    <script>
+        var scene, camera , render,material;
+        var Cabeza,Cabello,Cabello1,Cuello,Fondo,Capa,Hombros;
+        var CabezaFigura,CabelloFigura,Cabello1Figura,CuelloFigura,FondoFigura,CapaFigura,HombrosFigura;
+        var PielMaterial,CabelloMaterial,PrincipalRMaterial,SegundarioRMaterial,TerceroRMaterial,FondoMaterial;
+
+        PielMaterial = new THREE.MeshBasicMaterial({
+            color: 0xfcc75f,
+        });
+        CabelloMaterial= new THREE.MeshBasicMaterial({
+            color: 0xf000000,
+        });
+        PrincipalRMaterial= new THREE.MeshBasicMaterial({
+            color: 0x0b72b5,
+        });
+        SegundarioRMaterial= new THREE.MeshBasicMaterial({
+            color: 0xe3001c,
+        });
+        TerceroRMaterial= new THREE.MeshBasicMaterial({
+            color: 0xf4db05,
+        });
+        FondoMaterial= new THREE.MeshBasicMaterial({
+            color: 0xffffff,
+        });
+
+        function createCamera() {
+            camera = new THREE.PerspectiveCamera(
+                75,
+                window.innerWidth / window.innerHeight,
+                1,
+                100
+            );
+            camera.position.z = 10;
+        }
+
+        function createRenderer() {
+            renderer = new THREE.WebGLRenderer();
+            renderer.setSize(window.innerWidth, window.innerHeight);
+            document.body.appendChild(renderer.domElement);
+        }
+
+        function init() {
+            //create scene
+            scene = new THREE.Scene();
+            //create camera
+            createCamera();
+            //create rederer
+            createRenderer();
+            //create Fond
+            Font();
+            //Create Cabeza
+            CreateCabeza();
+            //Create Cuerpo
+            CreateCuerpo();
+        }
+
+        function animate(time) {
+            requestAnimationFrame(animate);
+            renderer.render(scene, camera);
+        }
+
+        function Font(){
+            FondoFigura  = new THREE.BoxGeometry(6, 10, 0.1)
+            Fondo = new THREE.Mesh(FondoFigura, FondoMaterial);
+            scene.add(Fondo);
+            Fondo.position.set(0, 0, 0);
+        }
+
+        function CreateCabeza(){
+            CabezaFigura = new THREE.BoxGeometry(0.8,0.8,0.4)
+            Cabeza = new THREE.Mesh(CabezaFigura, PielMaterial);
+            scene.add(Cabeza);
+            Cabeza.position.set(0, 2, 0);
+
+            CabelloFigura = new THREE.BoxGeometry(0.8,0.3,0.4)
+            Cabello = new THREE.Mesh(CabelloFigura, CabelloMaterial);
+            scene.add(Cabello);
+            Cabello.position.set(0, 2.5, 0);
+            
+            Cabello1Figura = new THREE.BoxGeometry(0.1,0.2,0.4)
+            Cabello1 = new THREE.Mesh(Cabello1Figura, CabelloMaterial);
+            scene.add(Cabello1);
+            Cabello1.position.set(-0.2, 2.3, 0);
+
+            CuelloFigura  = new THREE.BoxGeometry(0.5,0.2,0.4)
+            Cuello = new THREE.Mesh(CuelloFigura, PielMaterial);
+            scene.add(Cuello);
+            Cuello.position.set(0, 1.5, 0);
+        }
+
+        function CreateCuerpo(){
+            CapaFigura = new THREE.BoxGeometry(3,4,0.3)
+            Capa = new THREE.Mesh(CapaFigura,SegundarioRMaterial)
+            scene.add(Capa)
+            Capa.position.set(0, -0.6, 0);
+
+            HombrosFigura = new THREE.BoxGeometry(2.5,0.4,0.4)
+            Hombros = new THREE.Mesh(HombrosFigura,PrincipalRMaterial)
+            scene.add(Hombros)
+            Hombros.position.set(0, 1.18, 0);
+
+        }
+
+        init();
+        requestAnimationFrame(animate);
+    </script>
+
 </body>
+
 </html>
