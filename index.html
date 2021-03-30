@@ -14,27 +14,30 @@
         crossorigin="anonymous">
         </script>
     <script>
-        var scene, camera , render,material;
-        var Cabeza,Cabello,Cabello1,Cuello,Fondo,Capa,Hombros;
-        var CabezaFigura,CabelloFigura,Cabello1Figura,CuelloFigura,FondoFigura,CapaFigura,HombrosFigura;
-        var PielMaterial,CabelloMaterial,PrincipalRMaterial,SegundarioRMaterial,TerceroRMaterial,FondoMaterial;
+        var scene, camera, render, material;
+        var Cabeza, Cabello, Cabello1, Cuello, Fondo, Capa, Hombros, Brazo, Brazo1, Torzo,
+            Escudo, Escudo1, Cinturon ,Pierna , Pierna1 ,Pie,Pie1,Mano,Mano1;
+        var CabezaFigura, CabelloFigura, Cabello1Figura, CuelloFigura, FondoFigura,CapaFigura, PiernaFigura,
+            HombrosFigura, BrazoFigura, Brazo1Figura, TorzoFigura, Escudofigura, Escudo1figura, CinturonFigura,
+            PieFigura, Pie1Figura,ManoFigura,Mano1Figura;
+        var PielMaterial, CabelloMaterial, PrincipalRMaterial, SegundarioRMaterial, TerceroRMaterial, FondoMaterial;
 
         PielMaterial = new THREE.MeshBasicMaterial({
             color: 0xfcc75f,
         });
-        CabelloMaterial= new THREE.MeshBasicMaterial({
+        CabelloMaterial = new THREE.MeshBasicMaterial({
             color: 0xf000000,
         });
-        PrincipalRMaterial= new THREE.MeshBasicMaterial({
+        PrincipalRMaterial = new THREE.MeshBasicMaterial({
             color: 0x0b72b5,
         });
-        SegundarioRMaterial= new THREE.MeshBasicMaterial({
+        SegundarioRMaterial = new THREE.MeshBasicMaterial({
             color: 0xe3001c,
         });
-        TerceroRMaterial= new THREE.MeshBasicMaterial({
+        TerceroRMaterial = new THREE.MeshBasicMaterial({
             color: 0xf4db05,
         });
-        FondoMaterial= new THREE.MeshBasicMaterial({
+        FondoMaterial = new THREE.MeshBasicMaterial({
             color: 0xffffff,
         });
 
@@ -67,6 +70,7 @@
             CreateCabeza();
             //Create Cuerpo
             CreateCuerpo();
+            CreatePiernas();
         }
 
         function animate(time) {
@@ -74,46 +78,119 @@
             renderer.render(scene, camera);
         }
 
-        function Font(){
-            FondoFigura  = new THREE.BoxGeometry(6, 10, 0.1)
+        function Font() {
+            FondoFigura = new THREE.BoxGeometry(6, 10, 0.1)
             Fondo = new THREE.Mesh(FondoFigura, FondoMaterial);
             scene.add(Fondo);
             Fondo.position.set(0, 0, 0);
         }
 
-        function CreateCabeza(){
-            CabezaFigura = new THREE.BoxGeometry(0.8,0.8,0.4)
+        function CreateCabeza() {
+            CabezaFigura = new THREE.BoxGeometry(0.8, 0.8, 0.4)
             Cabeza = new THREE.Mesh(CabezaFigura, PielMaterial);
             scene.add(Cabeza);
             Cabeza.position.set(0, 2, 0);
 
-            CabelloFigura = new THREE.BoxGeometry(0.8,0.3,0.4)
+            CabelloFigura = new THREE.BoxGeometry(0.8, 0.3, 0.4)
             Cabello = new THREE.Mesh(CabelloFigura, CabelloMaterial);
             scene.add(Cabello);
             Cabello.position.set(0, 2.5, 0);
-            
-            Cabello1Figura = new THREE.BoxGeometry(0.1,0.2,0.4)
+
+            Cabello1Figura = new THREE.BoxGeometry(0.1, 0.2, 0.4)
             Cabello1 = new THREE.Mesh(Cabello1Figura, CabelloMaterial);
             scene.add(Cabello1);
             Cabello1.position.set(-0.2, 2.3, 0);
 
-            CuelloFigura  = new THREE.BoxGeometry(0.5,0.2,0.4)
+            CuelloFigura = new THREE.BoxGeometry(0.5, 0.2, 0.4)
             Cuello = new THREE.Mesh(CuelloFigura, PielMaterial);
             scene.add(Cuello);
             Cuello.position.set(0, 1.5, 0);
         }
 
-        function CreateCuerpo(){
-            CapaFigura = new THREE.BoxGeometry(3,4,0.3)
-            Capa = new THREE.Mesh(CapaFigura,SegundarioRMaterial)
+        function CreateCuerpo() {
+            CapaFigura = new THREE.BoxGeometry(3.2, 4.2, 0.3)
+            Capa = new THREE.Mesh(CapaFigura, SegundarioRMaterial)
             scene.add(Capa)
-            Capa.position.set(0, -0.6, 0);
+            Capa.position.set(0, -0.7, 0);
 
-            HombrosFigura = new THREE.BoxGeometry(2.5,0.4,0.4)
-            Hombros = new THREE.Mesh(HombrosFigura,PrincipalRMaterial)
+            HombrosFigura = new THREE.BoxGeometry(2.52, 0.4, 0.4)
+            Hombros = new THREE.Mesh(HombrosFigura, PrincipalRMaterial)
             scene.add(Hombros)
-            Hombros.position.set(0, 1.18, 0);
+            Hombros.position.set(0, 1.19, 0);
 
+            BrazoFigura = new THREE.BoxGeometry(0.42, 2.5, 0.4)
+            Brazo = new THREE.Mesh(BrazoFigura, PrincipalRMaterial)
+            scene.add(Brazo)
+            Brazo.position.set(-1.05, 0, 0);
+
+            Brazo1Figura = new THREE.BoxGeometry(0.42, 2.5, 0.4)
+            Brazo1 = new THREE.Mesh(Brazo1Figura, PrincipalRMaterial)
+            scene.add(Brazo1)
+            Brazo1.position.set(1.05, 0, 0);
+
+            TorzoFigura = new THREE.BoxGeometry(1.5, 2.2, 0.4)
+            Torzo = new THREE.Mesh(TorzoFigura, PrincipalRMaterial)
+            scene.add(Torzo)
+            Torzo.position.set(0, 0, 0);
+
+            Escudofigura = new THREE.BoxGeometry(1, 0.63, 0.4)
+            Escudo = new THREE.Mesh(Escudofigura, SegundarioRMaterial)
+            scene.add(Escudo)
+            Escudo.position.set(0, 0.7, 0);
+
+            Escudo1figura = new THREE.BoxGeometry(0.8, 0.4, 0.4)
+            Escudo1 = new THREE.Mesh(Escudo1figura, TerceroRMaterial)
+            scene.add(Escudo1)
+            Escudo1.position.set(0, 0.69, 0);
+
+            ManoFigura= new THREE.BoxGeometry(0.43, 0.6, 0.4)
+            Mano = new THREE.Mesh(ManoFigura, PielMaterial)
+            scene.add(Mano)
+            Mano.position.set(-1.06, -1.5, 0);
+
+            Mano1Figura= new THREE.BoxGeometry(0.43, 0.6, 0.4)
+            Mano1 = new THREE.Mesh(Mano1Figura, PielMaterial)
+            scene.add(Mano1)
+            Mano1.position.set(1.06, -1.5, 0);
+
+            // var geom = new THREE.Geometry();
+            // var v1 = new THREE.Vector3(-0.5,0.64, 0.4);
+            // var v2 = new THREE.Vector3(0, 0.3, 0.4);
+            // var v3 = new THREE.Vector3(0.5, 0.6, 0.4);
+            // geom.vertices.push(v1);
+            // geom.vertices.push(v2);
+            // geom.vertices.push(v3);
+            // geom.faces.push(new THREE.Face3(0, 1, 2));
+            // Escudo = new THREE.Mesh(geom, SegundarioRMaterial)
+            // scene.add(Escudo)
+        }
+
+        function CreatePiernas(){
+            CinturonFigura = new THREE.BoxGeometry(1.5, 0.3, 0.4)
+            Cinturon = new THREE.Mesh(CinturonFigura, TerceroRMaterial)
+            scene.add(Cinturon)
+            Cinturon.position.set(0, -1.2, 0);
+
+            PiernaFigura = new THREE.BoxGeometry(0.6, 2, 0.4)
+            Pierna = new THREE.Mesh(PiernaFigura, PrincipalRMaterial)
+            scene.add(Pierna)
+            Pierna.position.set(-0.4, -2.8, 0);
+
+            Pierna1Figura = new THREE.BoxGeometry(0.6, 2, 0.4)
+            Pierna1 = new THREE.Mesh(Pierna1Figura, PrincipalRMaterial)
+            scene.add(Pierna1)
+            Pierna1.position.set(0.4, -2.8, 0);
+
+            PieFigura = new THREE.BoxGeometry(0.6, 1, 0.4)
+            Pie = new THREE.Mesh(PieFigura, SegundarioRMaterial)
+            scene.add(Pie)
+            Pie.position.set(0.4, -4.2, 0);
+
+            Pie1Figura = new THREE.BoxGeometry(0.6, 1, 0.4)
+            Pie1 = new THREE.Mesh(Pie1Figura, SegundarioRMaterial)
+            scene.add(Pie1)
+            Pie1.position.set(-0.4, -4.2, 0);
+            
         }
 
         init();
